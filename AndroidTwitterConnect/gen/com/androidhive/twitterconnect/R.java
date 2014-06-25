@@ -433,9 +433,10 @@ containing a value of this type.
         public static final int hybrid=0x7f060004;
         public static final int imageView1=0x7f060014;
         public static final int lblUserName=0x7f060016;
-        public static final int listPenyakit=0x7f06001c;
+        public static final int listMarker=0x7f06001c;
+        public static final int listPenyakit=0x7f06001d;
         public static final int match_parent=0x7f06000c;
-        public static final int menu_settings=0x7f06001d;
+        public static final int menu_settings=0x7f06001e;
         public static final int monochrome=0x7f060013;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;

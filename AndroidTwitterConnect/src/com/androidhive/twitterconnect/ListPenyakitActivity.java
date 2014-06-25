@@ -3,6 +3,9 @@ package com.androidhive.twitterconnect;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -30,7 +33,7 @@ public class ListPenyakitActivity extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        // storing string resources into Array
+        // mendapatkan jenis penyakit dari webservice
         String[] jenis_penyakit = getJenisPenyakit();
         
         if(jenis_penyakit == null)
@@ -39,6 +42,8 @@ public class ListPenyakitActivity extends ListActivity {
         	jenis_penyakit[0] = "Pengambilan Data Gagal";
         }
         // Binding Array to ListAdapter
+        
+        
         this.setListAdapter(new ArrayAdapter<String>(this, R.layout.ui_penyakit, R.id.listPenyakit, jenis_penyakit));
         
         ListView lv = getListView();
@@ -49,18 +54,21 @@ public class ListPenyakitActivity extends ListActivity {
               int position, long id) {
         	  
         	  // selected item 
-        	  String product = ((TextView) view).getText().toString();
+        	  String penyakit = ((TextView) view).getText().toString();
+        	  
         	  
         	  // Launching new Activity on selecting single List Item
         	  Intent i = new Intent(getApplicationContext(), Map.class); // <---- isi class Map.java
         	  // sending data to new activity
-        	  i.putExtra("product", product);
+        	  i.putExtra("penyakit", penyakit);
+        	          	 
         	  startActivity(i);
         	
           }
         });
     }
     
+   
     public String [] getJenisPenyakit()
     {
     	String [] listPenyakit =  null;

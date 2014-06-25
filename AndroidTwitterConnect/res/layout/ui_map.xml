@@ -20,4 +20,11 @@
   			android:textStyle="bold"
   			android:padding="10dip"/>
 
+    <ListView
+        android:id="@+id/listMarker"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent">
+    </ListView>
+    
 </RelativeLayout>
