@@ -121,7 +121,7 @@ public class Map extends Activity{
 //	@Override
 //	protected void onCreate(Bundle savedInstanceState) {
 //		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.activity_main);
+//		setContentView(R.layout.ui_map);
 //
 //		try {
 //			// Loading map
@@ -225,7 +225,29 @@ public class Map extends Activity{
 //		super.onResume();
 //		initilizeMap();
 //	}
-//
+
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//	    // Inflate the menu; this adds items to the action bar if it is present.
+//	    getMenuInflater().inflate(R.menu.activity_main, menu);
+//	    return true;
+//	}
+//	
+//	public boolean onOptionsItemSelected(MenuItem item)
+//	{
+//	    switch(item.getItemId())
+//	    {
+//	    case  R.id.menu_settings:
+//	    	this.setContentView(R.layout.activity_main);
+//	        
+//	    	Intent intent = new Intent(Map.this, UpdateTweet.class);
+//	        startActivity(intent);
+//	        break;
+//	    }
+//	    return true;
+//	
+//	}
+
 //	/**
 //	 * function to load map If map is not created it will create it for you
 //	 * */
