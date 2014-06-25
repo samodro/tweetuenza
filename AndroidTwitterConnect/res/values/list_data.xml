@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="jenis_penyakit">
+    	<item>Influenza</item>
+    	<item>Maag</item>
+    	<item>Demam Berdarah</item>
+    	<item>Tifus</item>
+    	<item>Vertigo</item>
+    	<item>Hamil</item>
+        <item>Diare</item>
+        <item>Muntaber</item>
+        <item>Malaria</item>
+        <item>HIV/ AIDS</item>
+    </string-array>
+</resources>

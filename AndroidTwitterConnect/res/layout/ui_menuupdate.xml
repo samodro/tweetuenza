@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg2"
+    android:orientation="vertical" >
+     
+     
+    <!-- user name label -->
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/lblUserName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dip"
+        android:padding="10dip" />
+   
+    <!-- Tweet EditText -->
+
+    <EditText
+        android:id="@+id/txtUpdateStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:hint="Masukkan Tweet Anda di sini..."/>
+     
+    <!-- Tweet Button -->
+    <Button android:id="@+id/btnUpdateStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Tweet"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"/>
+     
+    <!-- Twitter Logout button -->
+    <Button android:id="@+id/btnLogoutTwitter"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout from Twitter"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="50dip"/>
+    
+    <Button
+        android:id="@+id/btnLihatList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="28dp"
+        android:text="Lihat List"/>
+ 
+</LinearLayout>

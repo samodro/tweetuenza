@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">Android Twitter Connect</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Update Tweet</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="jd_list_penyakit">List Penyakit</string>
+    <string name="jd_map">Ini Lokasinya</string>
+
+</resources>
