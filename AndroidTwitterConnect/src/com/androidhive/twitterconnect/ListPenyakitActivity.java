@@ -3,6 +3,8 @@ package com.androidhive.twitterconnect;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -30,7 +32,7 @@ import android.widget.TextView;
 
 public class ListPenyakitActivity extends ListActivity {
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         
         // mendapatkan jenis penyakit dari webservice
@@ -50,11 +52,12 @@ public class ListPenyakitActivity extends ListActivity {
 
         // listening to single list item on click
         lv.setOnItemClickListener(new OnItemClickListener() {
-          public void onItemClick(AdapterView<?> parent, View view,
+          public void onItemClick (AdapterView<?> parent, View view,
               int position, long id) {
         	  
         	  // selected item 
         	  String penyakit = ((TextView) view).getText().toString();
+        	          	 
         	  
         	  
         	  // Launching new Activity on selecting single List Item
@@ -112,4 +115,6 @@ public class ListPenyakitActivity extends ListActivity {
     	
     	return listPenyakit;
     }
+    
+   
 }

@@ -5,6 +5,8 @@ package com.androidhive.twitterconnect;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -37,7 +39,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Map extends Activity{
 	ListView listView;
-	
+	Tweet [] tweets;
+	String [] marker;
+	String product;
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +50,9 @@ public class Map extends Activity{
         Intent i = getIntent();
         
         TextView txtProduct = (TextView) findViewById(R.id.product_label);  
-        String product = i.getStringExtra("penyakit");
+        product = i.getStringExtra("penyakit");
         
-        String [] marker = getMarker(product);
+        marker = getMarker(product);
         
         if(marker == null)
         {
@@ -57,9 +61,11 @@ public class Map extends Activity{
         }
         
         
+        
+         	    
         listView = (ListView) findViewById(R.id.listMarker);
         
-       ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
         android.R.layout.simple_list_item_1, android.R.id.text1, marker);
              
         listView.setAdapter(adapter); 
@@ -70,9 +76,86 @@ public class Map extends Activity{
         // displaying selected product name
         txtProduct.setText(product);
         
+        Load(marker.length);
+        insertTweet();
+        
+        
 	}
 	
-	 public String [] getMarker (String penyakit)
+	public void Load(int lengt)
+	{
+		 	Crawling crawling = new Crawling();
+	        tweets =  new Tweet[lengt * 200];
+	        
+	        int j = 0;
+	  	    for(int iter = 0; iter<lengt ; iter++)
+		  	{
+		  		  Tweet [] temp = null;
+		  		  try {
+						temp = crawling.crawl(marker[iter]);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}		  		  		  
+		  		  
+		  		  for(int x = 0; x < crawling.banyaktweet ; x++)
+		  		  {
+		  			  tweets[j] = new Tweet();
+		  			  tweets[j++] = temp[x];
+		  		  }
+		  		  
+		  	}
+	        
+	  	    int banyak = j;
+	  	    
+	  	    System.out.println("banyak j:" + j);
+	  	    
+	  	    for(int tes = 0; tes<banyak ; tes++)
+	  	    {
+	  	    	System.out.println("TWEET ke - " + tes);
+	  	    	System.out.println(tweets[tes].tweet);
+	  	    	System.out.println(tweets[tes].date);
+	  	    	System.out.println(tweets[tes].latitude+' '+tweets[tes].longitude);
+	  	    }
+
+	}
+	
+	public void insertTweet()
+	{
+		for(int i = 0; i<tweets.length ; i++)
+		{
+			try
+	    	{
+		    	URL url = new URL("http://tweetuenza.bl.ee/webservice/markertweet?tweet="+tweets[i].tweet+"&latitude="+tweets[i].latitude+"&longitude="+tweets[i].longitude+"&penyakit="+product+"&time="+tweets[i].date);
+				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+				DocumentBuilder db = dbf.newDocumentBuilder();
+				Document doc = db.parse(new InputSource(url.openStream()));
+				doc.getDocumentElement().normalize();
+				NodeList nodeList = doc.getElementsByTagName("item");		
+						
+		    }catch(MalformedURLException e)
+			{
+				e.printStackTrace();
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public String [] getMarker (String penyakit)
 	    {
 	    	String [] listMarker =  null;
 	    	try
